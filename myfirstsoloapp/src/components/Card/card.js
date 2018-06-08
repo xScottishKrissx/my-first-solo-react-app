@@ -12,13 +12,12 @@ export class Card extends React.Component{
                 <p>{this.props.text}</p>
                 <h5>{this.props.author}</h5>
 
-                <AddLike likeCount={this.props.likeCount}/>
+                <AddLike likeCount={this.props.likeCount} newLikes={this.props.newLikes}/>
             </div>
         );
     }
 }
-
-class AddLike extends React.Component{
+export class AddLike extends React.Component{
 
     constructor(props){
         super(props);
@@ -27,8 +26,8 @@ class AddLike extends React.Component{
     handleClick(){
         console.log("Click");
         console.log(this.props.likeCount);
-        const thing = this.props.likeCount + 10;
-        console.log("Like Count is.." + thing);
+        //this.setState({ likes: likes += 10});
+        //console.log("Like Count is.." + thing);
     }
 
 
@@ -38,11 +37,13 @@ class AddLike extends React.Component{
             <div>
                 <button onClick={this.handleClick}>Click Me</button>
                 <span>Likes: {this.props.likeCount}</span>
-                <span> New Likes:{thing}</span>
+                <span> New Likes:{this.props.newLikes}</span>
             </div>
         )
     }
 }
+
+
 
 
 /*
