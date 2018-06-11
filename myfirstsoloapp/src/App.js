@@ -50,29 +50,40 @@ class App extends React.Component{
 
 class GetData extends React.Component{
   clicked(e){
+    
     console.log("You Clicked " + e.target.id);
-    const x = e.target.id;
-    
-    const y = Math.random () < 0.5 ? "Red" : "Blue";
+    //const x = e.target.id;    
+    const y = Math.random () < 0.5 ?  true : false;
     document.getElementById(e.target.id).innerHTML = y;
+    //const ttest = document.getElementById(e.target.id).innerHTML = y;
+    //console.log(ttest);
     
-    /*
-    if (x === "btnId-0" ){
-      document.getElementById(e.target.id).innerHTML = "Red";
+    
+    if (!y === true ){
+      document.getElementById(e.target.id).innerHTML = "Dislike";
+      console.log("Dislike");
       
+    }else{
+      document.getElementById(e.target.id).innerHTML = "Like";
+      console.log("Like");
     }
-    else if(x === "btnId-1"){
-      document.getElementById(e.target.id).innerHTML = "Blue";
-    }
-    */
+    
+   const currentLikes = document.getElementById("likes").innerHTML;
+   console.log("Current Likes: " + currentLikes);
   }
+
+
   
   render(){
 
     const {data}  = this.props;
     const number  = 0;
     const dataList = data.map(cardData => {
-      console.log(cardData);
+      //console.log(cardData);
+      console.log("ID is..." + cardData.id);
+      console.log(cardData.title);
+      console.log(cardData.likes);
+
       return (
         <div key={cardData.id} id={cardData.id} className="card">        
           <p>{cardData.title}</p>         
@@ -80,8 +91,12 @@ class GetData extends React.Component{
           <p id="likes">{number}</p>     
           <button id={"btnId-" + cardData.id} onClick={this.clicked}>Like</button>  
         </div>
+        
+        
       )
-    }); 
+
+    });
+
 
     
     

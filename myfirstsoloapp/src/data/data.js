@@ -8,6 +8,11 @@ export default [
         id: 1,
         title: 'Title 2',
         likes: 50
+    },    
+    {
+        id: 2,
+        title: 'Title 3',
+        likes: 100
     }
 
 ]
