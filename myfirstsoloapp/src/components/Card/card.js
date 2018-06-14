@@ -2,32 +2,67 @@ import React from 'react';
 import './card.css';
 
 
-export class Card extends React.Component{
-    render(){
-        return (
-            <div>
-                <img alt="thingy"/>
-                <h1>{this.props.title}</h1>
-                <h3>{this.props.subtitle}</h3>
-                <p>{this.props.text}</p>
-                <h5>{this.props.author}</h5>
 
-                <AddLike likeCount={this.props.likeCount} newLikes={this.props.newLikes}/>
-            </div>
-        );
+export class Card extends React.Component{
+    clicked(e){
+    
+        console.log("You Clicked " + e.target.id);
+        //const x = e.target.id;    
+        const y = Math.random () < 0.5 ?  true : false;
+        document.getElementById(e.target.id).innerHTML = y;
+        //const ttest = document.getElementById(e.target.id).innerHTML = y;
+        //console.log(ttest);
+        
+        
+        if (!y === true ){
+          document.getElementById(e.target.id).innerHTML = "Dislike";
+          console.log("Dislike");
+          
+        }else{
+          document.getElementById(e.target.id).innerHTML = "Like";
+          console.log("Like");
+        }
+        
+       const currentLikes = document.getElementById("likes").innerHTML;
+       console.log("Current Likes: " + currentLikes);
+      }
+
+    render(){        
+    const {data}  = this.props;
+    const number  = 0;
+    const dataList = data.map(cardData => {
+      //console.log(cardData);
+      console.log("ID is..." + cardData.id);
+      console.log(cardData.title);
+      console.log(cardData.likes);
+      const randomNum = (Math.floor(Math.random() * 2) + 0);
+
+      return (
+        <div key={cardData.id} id={cardData.id} data-set="" className="card">  
+          <img src={require("./assets/card" + randomNum + ".jpg")} className="" alt="temp" />      
+          <p className="" >{cardData.title}</p>  
+          <p className="">{cardData.text}</p>       
+          <p className="">{cardData.likes}</p> 
+          <p id="likes">{number}</p>     
+          <button className={"button"} id={"btnId-" + cardData.id} onClick={this.clicked}>Like</button>  
+        </div>       
+       )
+    });    
+    
+    return(
+      <div className="cardWrapper">{dataList}</div>
+    );
+
     }
+
 }
+
+/*
 export class AddLike extends React.Component{
 
     constructor(props){
         super(props);
         this.handleClick = this.handleClick.bind(this);
-    }
-    handleClick(){
-        console.log("Click");
-        console.log(this.props.likeCount);
-        //this.setState({ likes: likes += 10});
-        //console.log("Like Count is.." + thing);
     }
 
 
@@ -42,7 +77,7 @@ export class AddLike extends React.Component{
         )
     }
 }
-
+*/
 
 
 
