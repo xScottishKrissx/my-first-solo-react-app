@@ -9,20 +9,17 @@ import { Card, /*AddLike*/ } from './components/Card/card';
 import './data/data';
 
 
-
-
-let test;
 class App extends React.Component{
   render(){
-    //console.log("Our Data is.." + this.props.data);
-
+    //console.log("Our Data is.." + this.props.data);    
+     
     return (
-      <div className="wrapper">
+      <div className="wrapper">        
         
-        
-        
+       
         <Card data={this.props.data} />
-          
+       
+      
         {/*
         <Card  
           title="Title 1"

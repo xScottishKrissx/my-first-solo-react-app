@@ -27,9 +27,13 @@ export class Card extends React.Component{
        console.log("Current Likes: " + currentLikes);
       }
 
+    
+
+
     render(){        
     const {data}  = this.props;
     const number  = 0;
+
     const dataList = data.map(cardData => {
       //console.log(cardData);
       console.log("ID is..." + cardData.id);
@@ -37,20 +41,46 @@ export class Card extends React.Component{
       console.log(cardData.likes);
       const randomNum = (Math.floor(Math.random() * 2) + 0);
 
-      return (
+
+      return (        
+        
         <div key={cardData.id} id={cardData.id} data-set="" className="card">  
-          <img src={require("./assets/card" + randomNum + ".jpg")} className="" alt="temp" />      
+         <img src={require("./assets/" + cardData.image_path + ".jpg")} className="" alt="temp" />      
+          {/* <img src="https://picsum.photos/200/300/?random/" alt="temp" /> */ }
           <p className="" >{cardData.title}</p>  
           <p className="">{cardData.text}</p>       
           <p className="">{cardData.likes}</p> 
-          <p id="likes">{number}</p>     
+          <p id="likes">{number}</p>    
+          
           <button className={"button"} id={"btnId-" + cardData.id} onClick={this.clicked}>Like</button>  
-        </div>       
+         
+        </div>    
        )
     });    
     
+    /*
+    let i;
+    for(i = 0; i <= 2; i++ ){
+         <span>i</span>;
+      console.log("I is.." + i);
+      console.log("console log data list" + dataList)
+      
+
+
+    }
+
+    var cars = ["BMW", "Volvo", "Saab", "Ford", "Fiat", "Audi"];
+    var text = "";
+    var x;
+    for (x = 0; x < cars.length; x++) {
+        text += cars[x] + "<br>";
+    }
+    document.getElementsByClassName("cardWrapper").innerHTML = text;
+    */
+
     return(
       <div className="cardWrapper">{dataList}</div>
+      
     );
 
     }
