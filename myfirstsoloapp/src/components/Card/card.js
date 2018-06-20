@@ -4,12 +4,27 @@ import './card.css';
 
 
 export class Card extends React.Component{
+
+    constructor(props){
+        super(props);
+
+        this.state = {            
+            url: '/static/media/like.df7ce1e7.png',
+            actualMethod: require('./assets/like.png')
+        }
+        this.clicked = this.clicked.bind(this);
+        this.experiment = this.experiment.bind(this);
+        
+    }
+
     clicked(e){
     
         console.log("You Clicked " + e.target.id);
+        console.log("Classname is.. " + e.target.className);
         //const x = e.target.id;    
         const y = Math.random () < 0.5 ?  true : false;
         document.getElementById(e.target.id).innerHTML = y;
+
         //const ttest = document.getElementById(e.target.id).innerHTML = y;
         //console.log(ttest);
         
@@ -18,15 +33,27 @@ export class Card extends React.Component{
           document.getElementById(e.target.id).innerHTML = "Dislike";
           console.log("Dislike");
           
+          this.setState({
+            //   url: '/static/media/dislike.6ebbb798.png'
+            actualMethod: require('./assets/dislike.png')
+          })
+          
         }else{
           document.getElementById(e.target.id).innerHTML = "Like";
           console.log("Like");
+          this.setState({
+            // url: '/static/media/like.df7ce1e7.png'
+            actualMethod: require('./assets/like.png')
+            })
         }
         
        const currentLikes = document.getElementById("likes").innerHTML;
        console.log("Current Likes: " + currentLikes);
       }
-
+      experiment(e){
+          console.log("Experiment. ID is.. " + this.id);
+          console.log("Experiment. Classname is.. " + e.target.className);
+      }
     
 
 
@@ -44,15 +71,30 @@ export class Card extends React.Component{
 
       return (        
         
-        <div key={cardData.id} id={cardData.id} data-set="" className="card">  
-         <img src={require("./assets/" + cardData.image_path + ".jpg")} className="" alt="temp" />      
-          {/* <img src="https://picsum.photos/200/300/?random/" alt="temp" /> */ }
-          <p className="" >{cardData.title}</p>  
-          <p className="">{cardData.text}</p>       
-          <p className="">{cardData.likes}</p> 
-          <p id="likes">{number}</p>    
+        <div key={cardData.id} id={cardData.id} onClick={this.experiment} data-set="a" className="card">  
+         {/* <img src={require("./assets/" + cardData.image_path + ".jpg")} className="" alt="temp" />       */}
+          <img src={cardData.image_path} alt="temp" />
+         
+          <p className="title" >{cardData.title}</p>  
+          <p className="text">{cardData.text}</p>    
+
+          <div className="postInfo" >
+            <div className="author">
+                <img src={require("./assets/author.jpg")} alt="author"/>                 
+                <p className="author-name" >{cardData.author}</p>
+                <p className="post-date" >{cardData.post_date}</p>
+            </div>
+            <div className="likes">
+                {/* <img className="like" id="likes" onClick={this.clicked} src={require("./assets/like.png")} alt="like" /> */}
+                <img className="like" id="likes" onClick={this.clicked} src={this.state.actualMethod} alt="like" />
+                <p>{cardData.likes} | {cardData.dislikes} </p>
+            </div>   
+          </div>
+
+          {/* <p className="">{cardData.likes}</p>  */}
+          {/* <p id="likes">{number}</p>     */}
           
-          <button className={"button"} id={"btnId-" + cardData.id} onClick={this.clicked}>Like</button>  
+          {/* <button className={"button"} id={"btnId-" + cardData.id} onClick={this.clicked}>Like</button>   */}
          
         </div>    
        )
