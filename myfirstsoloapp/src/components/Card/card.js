@@ -61,6 +61,29 @@ export class Card extends React.Component{
     const {data}  = this.props;
     const number  = 0;
 
+
+    // const newDataList  = data.forEach(currentItem => {
+    //     console.log("new data list is = " + currentItem.id);
+    //     return (
+    //         <div className="hello">
+    //             <h2>{currentItem.title}</h2>
+    //             <img src="https://picsum.photos/500/200/?random" alt="newTemp" />
+    //         </div>
+    //     );
+    // });
+
+    // const newNewDataList = data.map(function(info){
+    //     console.log(info);
+    //     return (
+    //         <div key={info.id}  className="hello">
+    //             <h2>{info.title}</h2>
+    //             <img src={info.image_path} alt="newTemp" />
+    //         </div>
+    //     )
+    // })
+    
+
+
     const dataList = data.map(cardData => {
       //console.log(cardData);
       console.log("ID is..." + cardData.id);
@@ -70,23 +93,32 @@ export class Card extends React.Component{
 
 
       return (        
+
+
+
         
         <div key={cardData.id} id={cardData.id} onClick={this.experiment} data-set="a" className="card">  
          {/* <img src={require("./assets/" + cardData.image_path + ".jpg")} className="" alt="temp" />       */}
-          <img src={cardData.image_path} alt="temp" />
+          {/* <img src={cardData.image_path} alt="temp" /> */}
+
+         <img src={"https://unsplash.it/500/200?random=" + cardData.id} alt="temp" />
+
+          {/* <img src="https://picsum.photos/500/200/?random" alt="temp" /> */}
          
           <p className="title" >{cardData.title}</p>  
           <p className="text">{cardData.text}</p>    
 
           <div className="postInfo" >
             <div className="author">
-                <img src={require("./assets/author.jpg")} alt="author"/>                 
+                {/* <img src={require("./assets/author.jpg")} alt="author"/>                  */}
+                <img src="https://randomuser.me/api/?inc=picture" alt="author"  />
                 <p className="author-name" >{cardData.author}</p>
                 <p className="post-date" >{cardData.post_date}</p>
             </div>
             <div className="likes">
                 {/* <img className="like" id="likes" onClick={this.clicked} src={require("./assets/like.png")} alt="like" /> */}
                 <img className="like" id="likes" onClick={this.clicked} src={this.state.actualMethod} alt="like" />
+                
                 <p>{cardData.likes} | {cardData.dislikes} </p>
             </div>   
           </div>
