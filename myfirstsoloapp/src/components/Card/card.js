@@ -1,7 +1,34 @@
 import React from 'react';
 import './card.css';
 
+class RandomImage extends React.Component{
 
+    constructor(props){
+        super(props);
+        this.state ={
+            pictures: [],
+        }
+    }
+
+    componentDidMount(){
+        fetch('https://randomuser.me/api/?results=1')
+        .then(results => {
+            return results.json();
+        }).then(data => {
+            let pictures = data.results.map((pic) => {
+                return(                    
+                     <img key={pic.results} src={pic.picture.medium} />                    
+                )
+            })
+            this.setState({pictures: pictures});
+            console.log("state", this.state.pictures);
+        })
+    }
+
+    render(){
+        return <span className="tempRemoveBorder">{this.state.pictures}</span>;
+    }
+}
 
 export class Card extends React.Component{
 
@@ -10,12 +37,16 @@ export class Card extends React.Component{
 
         this.state = {            
             url: '/static/media/like.df7ce1e7.png',
-            actualMethod: require('./assets/like.png')
+            actualMethod: require('./assets/like.png'),
+            // pictures: []
         }
         this.clicked = this.clicked.bind(this);
         this.experiment = this.experiment.bind(this);
         
     }
+
+    // I need to research .fetch more,
+
 
     clicked(e){
     
@@ -61,6 +92,10 @@ export class Card extends React.Component{
     const {data}  = this.props;
     const number  = 0;
 
+    
+
+
+
 
     // const newDataList  = data.forEach(currentItem => {
     //     console.log("new data list is = " + currentItem.id);
@@ -91,10 +126,10 @@ export class Card extends React.Component{
       console.log(cardData.likes);
       const randomNum = (Math.floor(Math.random() * 2) + 0);
 
-
+      console.log(<RandomImage />);
       return (        
 
-
+        
 
         
         <div key={cardData.id} id={cardData.id} onClick={this.experiment} data-set="a" className="card">  
@@ -111,7 +146,9 @@ export class Card extends React.Component{
           <div className="postInfo" >
             <div className="author">
                 {/* <img src={require("./assets/author.jpg")} alt="author"/>                  */}
-                <img src="https://randomuser.me/api/?inc=picture" alt="author"  />
+                {/* <img src="https://randomuser.me/api/?inc=picture" alt="author"  /> */}
+                {/* <img src={this.state.pictures} alt="author" /> */}
+                <RandomImage />
                 <p className="author-name" >{cardData.author}</p>
                 <p className="post-date" >{cardData.post_date}</p>
             </div>
