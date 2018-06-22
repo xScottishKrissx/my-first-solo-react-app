@@ -4,7 +4,7 @@ import React from 'react';
 //import logo from './logo.svg';
 import './App.css';
 //import './components/Card/card';
-import { Card, /*AddLike*/ } from './components/Card/card';
+import { Card /*AddLike*/ } from './components/Card/card';
 //import { NavBar } from './components/navbar/navbar';
 import './data/data';
 
@@ -18,6 +18,7 @@ class App extends React.Component{
         
        
         <Card data={this.props.data} />
+        
        
       
         {/*
@@ -43,21 +44,21 @@ class App extends React.Component{
   }
 }
 // The Following 2 are the same thing.
-class Footer extends React.Component{
-  render(){
-    return (
-        <div className="Footer">
-          <p>Footer</p>
-        </div>
-      );
-  }
-}
+// class Footer extends React.Component{
+//   render(){
+//     return (
+//         <div className="Footer">
+//           <p>Footer</p>
+//         </div>
+//       );
+//   }
+// }
 
-const StatelessFunctionalFooter = () => 
-  //Space for data manipulation
-    <div className="Footer">
-      <p>Stateless Functional Footer</p>
-    </div>
+// const StatelessFunctionalFooter = () => 
+//   //Space for data manipulation
+//     <div className="Footer">
+//       <p>Stateless Functional Footer</p>
+//     </div>
 
 
 export default App;

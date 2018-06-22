@@ -8,6 +8,7 @@ export default [
         dislikes: 0,
         //image_path: "https://unsplash.it/500/200?random=1",
         post_date: '5 mins ago'
+        
     },
     {
         id: 1,
@@ -18,6 +19,7 @@ export default [
         dislikes: 347,
        // image_path: "https://unsplash.it/500/200?random=2",
         post_date: '15 mins ago'
+        
     }
 
 ]

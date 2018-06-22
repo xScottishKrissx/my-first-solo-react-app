@@ -5,6 +5,7 @@ class RandomImage extends React.Component{
 
     constructor(props){
         super(props);
+        
         this.state ={
             pictures: [],
         }
@@ -16,12 +17,14 @@ class RandomImage extends React.Component{
             return results.json();
         }).then(data => {
             let pictures = data.results.map((pic) => {
-                return(                    
-                     <img key={pic.results} src={pic.picture.medium} />                    
-                )
+                // console.log(pic.id);
+                return(                            
+                     <img key={pic.id} alt="tempAuthorImage" src={pic.picture.medium} />                    
+                    )
             })
+            
             this.setState({pictures: pictures});
-            console.log("state", this.state.pictures);
+            // console.log("state", this.state.pictures);
         })
     }
 
@@ -29,6 +32,37 @@ class RandomImage extends React.Component{
         return <span className="tempRemoveBorder">{this.state.pictures}</span>;
     }
 }
+
+class AddLike extends React.Component{
+
+    constructor(props){
+        super(props);
+        this.state = {
+            likes: [],
+        }
+    }
+
+    addLike(e){
+        console.log("Add Like Please")
+    }
+
+    render(){
+
+        return (
+            <div>
+                <ul>
+                    <li onClick={this.addLike}>{this.props.id} | {this.props.likes}</li>                    
+                </ul>
+            </div>
+        );
+    }
+}
+
+
+
+
+
+
 
 export class Card extends React.Component{
 
@@ -38,10 +72,11 @@ export class Card extends React.Component{
         this.state = {            
             url: '/static/media/like.df7ce1e7.png',
             actualMethod: require('./assets/like.png'),
+            currentLikes: 0,
             // pictures: []
         }
-        this.clicked = this.clicked.bind(this);
-        this.experiment = this.experiment.bind(this);
+        this.clicked = this.clicked.bind(this);        
+        this.handleLike = this.handleLike.bind(this);
         
     }
 
@@ -66,7 +101,8 @@ export class Card extends React.Component{
           
           this.setState({
             //   url: '/static/media/dislike.6ebbb798.png'
-            actualMethod: require('./assets/dislike.png')
+            actualMethod: require('./assets/dislike.png'),
+            currentLikes: this.state.currentLikes - 1,
           })
           
         }else{
@@ -74,23 +110,37 @@ export class Card extends React.Component{
           console.log("Like");
           this.setState({
             // url: '/static/media/like.df7ce1e7.png'
-            actualMethod: require('./assets/like.png')
+            actualMethod: require('./assets/like.png'),
+            currentLikes: this.state.currentLikes + 1,
             })
+            
         }
         
        const currentLikes = document.getElementById("likes").innerHTML;
        console.log("Current Likes: " + currentLikes);
       }
-      experiment(e){
-          console.log("Experiment. ID is.. " + this.id);
-          console.log("Experiment. Classname is.. " + e.target.className);
-      }
-    
+
+
+      handleLike(e){        
+        console.log("You clicked " + e.target.id);
+
+        const number1 = document.getElementById(e.target.id).innerHTML;
+        console.log(number1);
+
+        // number1 is read only.
+        // I think the solution it handle adding likes via state in a seperate component
+        // similiar to how I work with the random image.
+        // I would need to pass a prop with the correct card id to identify each like value
+        
+        //const number2 = number1 =+ 1;
+        //console.log(number2);
+
+      }   
 
 
     render(){        
     const {data}  = this.props;
-    const number  = 0;
+    // const number  = 0;
 
     
 
@@ -124,15 +174,11 @@ export class Card extends React.Component{
       console.log("ID is..." + cardData.id);
       console.log(cardData.title);
       console.log(cardData.likes);
-      const randomNum = (Math.floor(Math.random() * 2) + 0);
+    //   const randomNum = (Math.floor(Math.random() * 2) + 0);
 
-      console.log(<RandomImage />);
-      return (        
-
-        
-
-        
-        <div key={cardData.id} id={cardData.id} onClick={this.experiment} data-set="a" className="card">  
+    //   console.log(<RandomImage />);
+      return (     
+       <div key={cardData.id} id={cardData.id} onClick={this.experiment} data-set="a" className="card">  
          {/* <img src={require("./assets/" + cardData.image_path + ".jpg")} className="" alt="temp" />       */}
           {/* <img src={cardData.image_path} alt="temp" /> */}
 
@@ -148,15 +194,22 @@ export class Card extends React.Component{
                 {/* <img src={require("./assets/author.jpg")} alt="author"/>                  */}
                 {/* <img src="https://randomuser.me/api/?inc=picture" alt="author"  /> */}
                 {/* <img src={this.state.pictures} alt="author" /> */}
-                <RandomImage />
+                <RandomImage key={cardData.id}/>
+                
                 <p className="author-name" >{cardData.author}</p>
                 <p className="post-date" >{cardData.post_date}</p>
             </div>
             <div className="likes">
                 {/* <img className="like" id="likes" onClick={this.clicked} src={require("./assets/like.png")} alt="like" /> */}
                 <img className="like" id="likes" onClick={this.clicked} src={this.state.actualMethod} alt="like" />
-                
-                <p>{cardData.likes} | {cardData.dislikes} </p>
+                <AddLike id={cardData.id} likes={cardData.likes} />
+                <p>{this.state.currentLikes}</p>
+                <p> 
+                    <span  onClick={this.handleLike} id="myId" className="addLike">{cardData.likes}</span> 
+                    
+                    | 
+                    <span  onClick={this.handleLike} className="addDislke">{cardData.dislikes}</span> 
+                </p>
             </div>   
           </div>
 
@@ -190,7 +243,7 @@ export class Card extends React.Component{
     */
 
     return(
-      <div className="cardWrapper">{dataList}</div>
+      <div className="cardWrapper">{dataList} </div>
       
     );
 
