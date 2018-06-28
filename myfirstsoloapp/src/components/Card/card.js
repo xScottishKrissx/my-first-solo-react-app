@@ -33,30 +33,30 @@ class RandomImage extends React.Component{
     }
 }
 
-class AddLike extends React.Component{
+// class AddLike extends React.Component{
 
-    constructor(props){
-        super(props);
-        this.state = {
-            likes: [],
-        }
-    }
+//     constructor(props){
+//         super(props);
+//         this.state = {
+//             likes: [],
+//         }
+//     }
 
-    addLike(e){
-        console.log("Add Like Please")
-    }
+//     addLike(e){
+//         console.log("Add Like Please to..." + e.target.id )
+//     }
 
-    render(){
+//     render(){
 
-        return (
-            <div>
-                <ul>
-                    <li onClick={this.addLike}>{this.props.id} | {this.props.likes}</li>                    
-                </ul>
-            </div>
-        );
-    }
-}
+//         return (
+//             <div>
+//                 <ul>
+//                     <li onClick={this.addLike} id={this.props.id}>{this.props.id} | {this.props.likes}</li>                    
+//                 </ul>
+//             </div>
+//         );
+//     }
+// }
 
 
 
@@ -72,7 +72,9 @@ export class Card extends React.Component{
         this.state = {            
             url: '/static/media/like.df7ce1e7.png',
             actualMethod: require('./assets/like.png'),
-            currentLikes: 0,
+            currentLikes:0,
+            currentDislikes: 0,
+            isLike:false
             // pictures: []
         }
         this.clicked = this.clicked.bind(this);        
@@ -84,48 +86,58 @@ export class Card extends React.Component{
 
 
     clicked(e){
-    
-        console.log("You Clicked " + e.target.id);
-        console.log("Classname is.. " + e.target.className);
+        
+        console.log(this.thing);
+       // console.log("You Clicked " + e.target.id);
+       // console.log("Classname is.. " + e.target.className);
         //const x = e.target.id;    
-        const y = Math.random () < 0.5 ?  true : false;
+        //const y = Math.random () < 0.5 ?  true : false;
+        const y = this.state.isLike;
+        //console.log(y);
         document.getElementById(e.target.id).innerHTML = y;
+        
 
         //const ttest = document.getElementById(e.target.id).innerHTML = y;
         //console.log(ttest);
         
         
-        if (!y === true ){
+        if (y === false){
           document.getElementById(e.target.id).innerHTML = "Dislike";
-          console.log("Dislike");
+          //console.log("Dislike");          
           
           this.setState({
             //   url: '/static/media/dislike.6ebbb798.png'
             actualMethod: require('./assets/dislike.png'),
-            currentLikes: this.state.currentLikes - 1,
-          })
+            currentLikes: this.state.currentLikes + 1,
+            isLike: true
+          })        
           
-        }else{
+        }else if(y === true ){
           document.getElementById(e.target.id).innerHTML = "Like";
-          console.log("Like");
+          //console.log("Like");               
+
           this.setState({
             // url: '/static/media/like.df7ce1e7.png'
             actualMethod: require('./assets/like.png'),
-            currentLikes: this.state.currentLikes + 1,
+            //currentDislikes: this.state.currentDislikes + 1,
+            currentLikes: this.state.currentLikes - 1,
+            isLike: false
             })
             
+        }else{
+
         }
         
-       const currentLikes = document.getElementById("likes").innerHTML;
-       console.log("Current Likes: " + currentLikes);
+       //const currentLikes = document.getElementById("likes").innerHTML;
+       //console.log("Current Likes: " + currentLikes);
       }
 
 
       handleLike(e){        
-        console.log("You clicked " + e.target.id);
+        //console.log("You clicked " + e.target.id);
 
-        const number1 = document.getElementById(e.target.id).innerHTML;
-        console.log(number1);
+        //const number1 = document.getElementById(e.target.id).innerHTML;
+        //console.log(number1);
 
         // number1 is read only.
         // I think the solution it handle adding likes via state in a seperate component
@@ -140,6 +152,7 @@ export class Card extends React.Component{
 
     render(){        
     const {data}  = this.props;
+    //console.log(this.state.isLike)
     // const number  = 0;
 
     
@@ -171,13 +184,18 @@ export class Card extends React.Component{
 
     const dataList = data.map(cardData => {
       //console.log(cardData);
-      console.log("ID is..." + cardData.id);
-      console.log(cardData.title);
-      console.log(cardData.likes);
+      //console.log("ID is..." + cardData.id);
+      //console.log(cardData.title);
+      //console.log(cardData.likes);
+
     //   const randomNum = (Math.floor(Math.random() * 2) + 0);
 
     //   console.log(<RandomImage />);
-      return (     
+
+        const newLikes  = this.state.currentLikes + cardData.likes;
+        console.log(newLikes);
+      return (    
+           
        <div key={cardData.id} id={cardData.id} onClick={this.experiment} data-set="a" className="card">  
          {/* <img src={require("./assets/" + cardData.image_path + ".jpg")} className="" alt="temp" />       */}
           {/* <img src={cardData.image_path} alt="temp" /> */}
@@ -201,9 +219,16 @@ export class Card extends React.Component{
             </div>
             <div className="likes">
                 {/* <img className="like" id="likes" onClick={this.clicked} src={require("./assets/like.png")} alt="like" /> */}
-                <img className="like" id="likes" onClick={this.clicked} src={this.state.actualMethod} alt="like" />
-                <AddLike id={cardData.id} likes={cardData.likes} />
-                <p>{this.state.currentLikes}</p>
+                <img className="like" id="likes" thing={cardData.id} onClick={this.clicked} src={this.state.actualMethod} alt="like" />
+                {/* <AddLike id={cardData.id} likes={cardData.likes} /> */}
+
+                {/* Old Way */}
+                {/* <p>{this.state.currentLikes}</p>
+                <p>{this.state.currentDislikes}</p> */}
+                {/* New Way */}
+                <p>{newLikes}</p>
+
+
                 <p> 
                     <span  onClick={this.handleLike} id="myId" className="addLike">{cardData.likes}</span> 
                     
