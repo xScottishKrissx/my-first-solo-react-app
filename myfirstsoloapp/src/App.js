@@ -17,7 +17,8 @@ class App extends React.Component{
       <div className="wrapper">        
         
        
-        <Card data={this.props.data} />
+        <Card data={this.props.data} fooid="1" />  
+        <Card data={this.props.data} fooid="2" />     
         
        
       

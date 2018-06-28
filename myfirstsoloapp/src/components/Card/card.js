@@ -74,7 +74,8 @@ export class Card extends React.Component{
             actualMethod: require('./assets/like.png'),
             currentLikes:0,
             currentDislikes: 0,
-            isLike:false
+            isLike:false,
+            clickedid: "0"
             // pictures: []
         }
         this.clicked = this.clicked.bind(this);        
@@ -88,21 +89,32 @@ export class Card extends React.Component{
     clicked(e){
         
         console.log(this.thing);
+        console.log(this.props.thing);
        // console.log("You Clicked " + e.target.id);
        // console.log("Classname is.. " + e.target.className);
         //const x = e.target.id;    
         //const y = Math.random () < 0.5 ?  true : false;
         const y = this.state.isLike;
         //console.log(y);
-        document.getElementById(e.target.id).innerHTML = y;
+        //document.getElementById(e.target.id).innerHTML = y;
+
+
+
+        const currentCardId = document.getElementById(e.currentTarget.id).id;
+        console.log("Card ID... " + currentCardId);
+        
+        this.setState({
+            clickedid:currentCardId
+        })
+        console.log("Clicked ID is.." + this.state.clickedid);
         
 
         //const ttest = document.getElementById(e.target.id).innerHTML = y;
         //console.log(ttest);
         
         
-        if (y === false){
-          document.getElementById(e.target.id).innerHTML = "Dislike";
+        if (y === false ){
+         // document.getElementById(e.target.id).innerHTML = "Dislike";
           //console.log("Dislike");          
           
           this.setState({
@@ -113,7 +125,7 @@ export class Card extends React.Component{
           })        
           
         }else if(y === true ){
-          document.getElementById(e.target.id).innerHTML = "Like";
+          //document.getElementById(e.target.id).innerHTML = "Like";
           //console.log("Like");               
 
           this.setState({
@@ -152,6 +164,7 @@ export class Card extends React.Component{
 
     render(){        
     const {data}  = this.props;
+    console.log(this.props.fooid);
     //console.log(this.state.isLike)
     // const number  = 0;
 
@@ -181,8 +194,14 @@ export class Card extends React.Component{
     // })
     
 
+    const test = data.find(function(element){
+        return element === 0;
+    })
+    console.log("Return element " + test)
 
     const dataList = data.map(cardData => {
+
+
       //console.log(cardData);
       //console.log("ID is..." + cardData.id);
       //console.log(cardData.title);
@@ -193,6 +212,7 @@ export class Card extends React.Component{
     //   console.log(<RandomImage />);
 
         const newLikes  = this.state.currentLikes + cardData.likes;
+        
         console.log(newLikes);
       return (    
            
@@ -219,7 +239,7 @@ export class Card extends React.Component{
             </div>
             <div className="likes">
                 {/* <img className="like" id="likes" onClick={this.clicked} src={require("./assets/like.png")} alt="like" /> */}
-                <img className="like" id="likes" thing={cardData.id} onClick={this.clicked} src={this.state.actualMethod} alt="like" />
+                <img className="like" id={cardData.id} thing={cardData.id} onClick={this.clicked} src={this.state.actualMethod} alt="like" />
                 {/* <AddLike id={cardData.id} likes={cardData.likes} /> */}
 
                 {/* Old Way */}
@@ -230,8 +250,7 @@ export class Card extends React.Component{
 
 
                 <p> 
-                    <span  onClick={this.handleLike} id="myId" className="addLike">{cardData.likes}</span> 
-                    
+                    <span  onClick={this.handleLike} id="myId" className="addLike">{cardData.likes}</span>                     
                     | 
                     <span  onClick={this.handleLike} className="addDislke">{cardData.dislikes}</span> 
                 </p>
