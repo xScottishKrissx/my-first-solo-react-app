@@ -16,9 +16,12 @@ class App extends React.Component{
     return (
       <div className="wrapper">        
         
-       
-        <Card data={this.props.data} fooid="1" />  
-        <Card data={this.props.data} fooid="2" />     
+        {/* The fooid is used to get the correct
+            array object ---------------------->
+        */}
+        <Card data={this.props.data} fooid="0" />  
+        <Card data={this.props.data} fooid="1" /> 
+        <Card data={this.props.data} fooid="2" />    
         
        
       

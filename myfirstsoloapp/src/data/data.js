@@ -20,6 +20,17 @@ export default [
        // image_path: "https://unsplash.it/500/200?random=2",
         post_date: '15 mins ago'
         
+    },
+    {
+        id: 2,
+        author: "Dave",
+        title: 'My first solo hing',
+        text: "I can't believe I actually did something!!",
+        likes: 666,
+        dislikes: 0,
+       // image_path: "https://unsplash.it/500/200?random=2",
+        post_date: '1 mins ago'
+        
     }
 
 ]

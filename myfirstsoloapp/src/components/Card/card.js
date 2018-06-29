@@ -86,10 +86,8 @@ export class Card extends React.Component{
     // I need to research .fetch more,
 
 
-    clicked(e){
-        
-        console.log(this.thing);
-        console.log(this.props.thing);
+    clicked(e){        
+
        // console.log("You Clicked " + e.target.id);
        // console.log("Classname is.. " + e.target.className);
         //const x = e.target.id;    
@@ -164,7 +162,7 @@ export class Card extends React.Component{
 
     render(){        
     const {data}  = this.props;
-    console.log(this.props.fooid);
+    //console.log(this.props.fooid);
     //console.log(this.state.isLike)
     // const number  = 0;
 
@@ -194,13 +192,65 @@ export class Card extends React.Component{
     // })
     
 
-    const test = data.find(function(element){
-        return element === 0;
-    })
-    console.log("Return element " + test)
+    // const test = data.find(function(element){
+    //     return element === 0;
+    // })
+    // console.log("Return element " + test)
+
+    //console.log("fooid is... " + this.props.fooid);
+    //console.log(data.slice(this.props.fooid));
+    //console.log(data[this.props.fooid]);
+
+    
+    const cardArray = [];
+    const singleCard = data[this.props.fooid];
+    
+    cardArray.push(singleCard);
+    
+    // console.log("ID is.. " + singleCard.id);
+    // console.log("Title is.. " + singleCard.title);
+    
+    
+    //console.log(cardArray.map(newcarddata => newcarddata.author));
+    const newDataList = cardArray.map(newcarddata => {
+    
+        const newLikes  = this.state.currentLikes + newcarddata.likes;
+        return(
+            <div key={newcarddata.id} id={newcarddata.id} className="card">
+             
+                <img src={"https://unsplash.it/500/200?random=" + newcarddata.id} alt="random_image" />
+
+                <p className="title" >{newcarddata.title}</p>  
+                <p className="text">{newcarddata.text}</p>
+
+                <div className="postInfo">
+
+                    <div className="author" >
+                        <RandomImage key={newcarddata.id}/>                        
+                        <p className="author-name" >{newcarddata.author}</p>
+                        <p className="post-date" >{newcarddata.post_date}</p>                        
+                    </div>
+                
+                    <div className="likes">
+                        
+                        <img 
+                            className="like" 
+                            id={newcarddata.id} 
+                            newcarddata={newcarddata.id} 
+                            onClick={this.clicked} 
+                            src={this.state.actualMethod} 
+                            alt="like" 
+                        />
+                        <p>{newLikes}</p>
+                    </div> 
+
+
+                </div>
+
+            </div>
+        )});
 
     const dataList = data.map(cardData => {
-
 
       //console.log(cardData);
       //console.log("ID is..." + cardData.id);
@@ -213,9 +263,9 @@ export class Card extends React.Component{
 
         const newLikes  = this.state.currentLikes + cardData.likes;
         
-        console.log(newLikes);
+       // console.log(newLikes);
       return (    
-           
+
        <div key={cardData.id} id={cardData.id} onClick={this.experiment} data-set="a" className="card">  
          {/* <img src={require("./assets/" + cardData.image_path + ".jpg")} className="" alt="temp" />       */}
           {/* <img src={cardData.image_path} alt="temp" /> */}
@@ -239,7 +289,7 @@ export class Card extends React.Component{
             </div>
             <div className="likes">
                 {/* <img className="like" id="likes" onClick={this.clicked} src={require("./assets/like.png")} alt="like" /> */}
-                <img className="like" id={cardData.id} thing={cardData.id} onClick={this.clicked} src={this.state.actualMethod} alt="like" />
+                <img className="like" id={cardData.id} newcarddata={cardData.id} onClick={this.clicked} src={this.state.actualMethod} alt="like" />
                 {/* <AddLike id={cardData.id} likes={cardData.likes} /> */}
 
                 {/* Old Way */}
@@ -287,7 +337,13 @@ export class Card extends React.Component{
     */
 
     return(
-      <div className="cardWrapper">{dataList} </div>
+      <div className="cardWrapper">
+     {newDataList}
+     
+      {/* {dataList}      */}
+      
+      
+      </div>
       
     );
 
@@ -305,7 +361,7 @@ export class AddLike extends React.Component{
 
 
     render(){
-        let thing ;
+        let newcarddata ;
         return (
             <div>
                 <button onClick={this.handleClick}>Click Me</button>
@@ -329,7 +385,7 @@ export class Card extends React.Component{
     }
 
     handleClick(){
-        //Do something
+        //Do somenewcarddata
         //alert("Button Pressed");
         const newCounter = this.state.counter === "No" ? "Yes": "No";
         //const newCounter = coinToss();
