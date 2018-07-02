@@ -5,7 +5,7 @@ export default [
         title: 'japan\'s beauty parks ',
         text: "To break the changes is to kill the man, the fight that comes with evil and bland, we don't sow, we don't cry. We make the changes we must fry, because we are kings among people",
         likes: 10,
-        dislikes: 0,
+        dislikes: 2,
         //image_path: "https://unsplash.it/500/200?random=1",
         post_date: '5 mins ago'
         
@@ -27,7 +27,7 @@ export default [
         title: 'My first solo hing',
         text: "I can't believe I actually did something!!",
         likes: 666,
-        dislikes: 0,
+        dislikes: 333,
        // image_path: "https://unsplash.it/500/200?random=2",
         post_date: '1 mins ago'
         
