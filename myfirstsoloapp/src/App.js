@@ -3,7 +3,7 @@ import React from 'react';
 //import logo from './logo.svg';
 import './App.css';
 //import './components/Card/card';
-import { Card /*AddLike*/ } from './components/Card/card';
+import { Card /*AddLike*/ , NewCard } from './components/Card/card';
 //import { NavBar } from './components/navbar/navbar';
 import './data/data';
 
@@ -18,9 +18,13 @@ class App extends React.Component{
         {/* The fooid is used to get the correct
             array object ---------------------->
         */}
-        <Card data={this.props.data} fooid="0" />  
+        <NewCard data={this.props.data} fooid="0" />
+        <NewCard data={this.props.data} fooid="1" />
+        <NewCard data={this.props.data} fooid="2" />
+        {/* <Card data={this.props.data} fooid="0" />  
         <Card data={this.props.data} fooid="1" /> 
-        <Card data={this.props.data} fooid="2" />    
+        <Card data={this.props.data} fooid="2" />   */}
+          
         
        
       

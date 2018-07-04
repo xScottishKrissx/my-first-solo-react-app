@@ -7,7 +7,7 @@ import registerServiceWorker from './registerServiceWorker';
 import data from './data/data';
 
 
-ReactDOM.render(<App data={data} />, document.getElementById('root'));
+ReactDOM.render(<App data={data}/>, document.getElementById('root'));
 
 
 
