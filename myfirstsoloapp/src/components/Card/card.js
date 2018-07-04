@@ -3,52 +3,6 @@ import './card.css';
 import RandomAuthorImage from '../random-image/random-image';
 import HandleLike from './handle-like';
 
-
-// A Class for handling add-like
-// A class for rendering the card
-// A class for 
-
-// export class Card extends React.Component{
-
-//      render(){        
-//         const {data}  = this.props;
-//         const cardArray = [];
-//         const singleCard = data[this.props.fooid];     
-//         cardArray.push(singleCard);    
-
-//         const newDataList = cardArray.map(newcarddata => {  
-//             return(
-//                 <div key={newcarddata.id} id={newcarddata.id} className="card">
-//                     <GetRandomHeaderImage id={newcarddata.id}/>
-//                     <p className="title" >{newcarddata.title}</p>  
-//                     <p className="text">{newcarddata.text}</p>
-
-//                     <div className="postInfo">
-
-//                         <div className="author" >
-//                             <RandomAuthorImage key={newcarddata.id}/>                        
-//                             <p className="author-name" >{newcarddata.author}</p>
-//                             <p className="post-date" >{newcarddata.post_date}</p>                        
-//                         </div>
-
-//                         <HandleLike  
-//                             carddataid={newcarddata.id}                             
-//                             dislikes={newcarddata.dislikes}
-//                             likes={newcarddata.likes}
-//                         />
-//                     </div>
-//                 </div>
-//             )
-//         });
-
-//     return(
-//         <div className="cardWrapper">         
-//           {newDataList}        
-//         </div>   
-//     );
-//    }
-// }
-
 export const NewCard = (props) => {
 
     const newData = props.data;    
