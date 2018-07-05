@@ -1,9 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab|Teko');
 
 .cardWrapper{
-    background-color: #f5f4ee;
+    /* background-color: #f5f4ee; */
+    display: inline-flex;
+    background-color: white;
+    /* border: 5px solid black; */
     padding: 0.5rem;
-    text-align: center;
+    /* text-align: center; */
+    /* width: auto; */
+    width: 360px;
 }
 
 .card{
@@ -15,13 +20,15 @@
 
     display: inline-block;
     /* height: 400px; */
+    min-height: 450px;
     /* margin: 0 auto; */
-    margin-bottom: 2rem;
+    /* margin-bottom: 2rem; */
     /* margin-left: 2rem; */
     /* margin-right: 2rem; */
     max-width: 500px;
     min-width: 300px;
     /* padding: 0.5rem; */
+    position: relative;
     text-align: left;
     width: 100%;
 
@@ -58,7 +65,13 @@
     padding-bottom: 1rem;
 }
 
-.postInfo{display: flex; padding-bottom: 1rem; }
+.postInfo{
+    bottom: 0;
+    display: flex; 
+    padding-bottom: 1rem; 
+    position: absolute;
+    width: 100%;
+}
 
     .author{display: inline; width: 69%;}
         .author img{

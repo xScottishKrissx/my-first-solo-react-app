@@ -1,10 +1,9 @@
 import React from 'react';
-//import ReactDOM from 'react-dom';
-//import logo from './logo.svg';
 import './App.css';
-//import './components/Card/card';
-import { Card /*AddLike*/ , NewCard } from './components/Card/card';
-//import { NavBar } from './components/navbar/navbar';
+
+import  Header  from  './components/Header/index';
+import Footer from './components/Footer/footer';
+import { NewCard } from './components/Card/card';
 import './data/data';
 
 
@@ -18,9 +17,29 @@ class App extends React.Component{
         {/* The fooid is used to get the correct
             array object ---------------------->
         */}
+
+        <Header />
+
+
         <NewCard data={this.props.data} fooid="0" />
         <NewCard data={this.props.data} fooid="1" />
         <NewCard data={this.props.data} fooid="2" />
+
+        <NewCard data={this.props.data} fooid="3" />
+        <NewCard data={this.props.data} fooid="4" />
+        <NewCard data={this.props.data} fooid="5" />
+
+        <NewCard data={this.props.data} fooid="6" />
+        <NewCard data={this.props.data} fooid="7" />
+        <NewCard data={this.props.data} fooid="8" />        
+        
+        <NewCard data={this.props.data} fooid="9" />
+        <NewCard data={this.props.data} fooid="10" />
+        <NewCard data={this.props.data} fooid="11" />
+
+        <Footer />
+
+        
         {/* <Card data={this.props.data} fooid="0" />  
         <Card data={this.props.data} fooid="1" /> 
         <Card data={this.props.data} fooid="2" />   */}

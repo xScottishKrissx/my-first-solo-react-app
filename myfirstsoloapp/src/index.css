@@ -6,13 +6,20 @@ body {
 /*
 *{border: 1px solid black;}
 */
+
+#root{
+  display: flex;
+}
 .wrapper{
+  background-color: white;
   /*
   padding-left: 5px;
   padding-right: 5px;
   */
   max-width: 1170px;
   margin: 0 auto;
+  text-align: center;
+  width: 100%;
 }
 
 
