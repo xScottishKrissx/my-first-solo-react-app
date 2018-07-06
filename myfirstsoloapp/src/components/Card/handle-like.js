@@ -19,12 +19,12 @@ export default class HandleLike extends React.Component{
 
         const y = this.state.isLike;
         const currentCardId = document.getElementById(e.currentTarget.id).id;
-        console.log("Card ID... " + currentCardId);        
+        // console.log("Card ID... " + currentCardId);        
         this.setState({
             clickedid:currentCardId
         })
 
-        console.log("Clicked ID is.." + this.state.clickedid);     
+        // console.log("Clicked ID is.." + this.state.clickedid);     
 
         if (y === false ){
             this.setState({           
@@ -50,7 +50,7 @@ export default class HandleLike extends React.Component{
     
     render(){
         const newLikes  = this.state.currentLikes + this.props.likes;
-        console.log(newLikes);
+        // console.log(newLikes);
 
         return (
             <div className="likes">

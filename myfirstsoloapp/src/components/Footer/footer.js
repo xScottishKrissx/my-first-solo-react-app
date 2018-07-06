@@ -9,14 +9,14 @@ const Footer = () => {
     )
 }
 
-const Function = () =>{
-    console.log("My Function");
-    return (
-        <div>
-            <p>My Functional component</p>
-        </div>
-    )
-}
+// const Function = () =>{
+//     console.log("My Function");
+//     return (
+//         <div>
+//             <p>My Functional component</p>
+//         </div>
+//     )
+// }
 
 
 export default Footer;

@@ -9,7 +9,7 @@ import './data/data';
 
 class App extends React.Component{
   render(){
-    //console.log("Our Data is.." + this.props.data);    
+    console.log("Hello, i hope you like my very first react project :)");    
      
     return (
       <div className="wrapper">        
@@ -20,7 +20,15 @@ class App extends React.Component{
 
         <Header />
 
+        {/* 
+          Having so may card components is probably not the most efficient way of 
+          doing this but it helped me get a better understanding of working with 
+          components, props and state.
 
+          It also helped me visualise how I could build a website using react by organising 
+          the components as you see here with a header, the content and then a footer.
+
+        */}
         <NewCard data={this.props.data} fooid="0" />
         <NewCard data={this.props.data} fooid="1" />
         <NewCard data={this.props.data} fooid="2" />
