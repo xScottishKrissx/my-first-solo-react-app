@@ -6,7 +6,8 @@ export default class HandleLike extends React.Component{
         super(props);
         this.state = {
             clickedid:"0",
-            likeGraphic: require('./assets/like.png'),
+            // likeGraphic: require('./assets/like.png'),
+            likeGraphic: 'https://christopherdunne.co.uk/react-cards-project/static/media/like.df7ce1e7.png',
             currentLikes:0,
             isLike:false,
         }
@@ -27,15 +28,16 @@ export default class HandleLike extends React.Component{
 
         if (y === false ){
             this.setState({           
-                likeGraphic: require('./assets/dislike.png'),
+                likeGraphic: 'https://christopherdunne.co.uk/react-cards-project/static/media/dislike.6ebbb798.png',
                 currentLikes: this.state.currentLikes + 1,
                 isLike: true
             })        
-          
+            
         }else if(y === true ){          
 
           this.setState({
-            likeGraphic: require('./assets/like.png'),
+            // likeGraphic: require('./assets/like.png'),
+            likeGraphic: 'https://christopherdunne.co.uk/react-cards-project/static/media/like.df7ce1e7.png',
             currentLikes: this.state.currentLikes - 1,
             isLike: false
             })
